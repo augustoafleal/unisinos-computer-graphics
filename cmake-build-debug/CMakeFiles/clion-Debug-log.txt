@@ -1,7 +1,0 @@
-/home/guto/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/guto/.local/share/JetBrains/Toolbox/apps/clion/bin/ninja/linux/x64/ninja -G Ninja -S /home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica -B /home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica/cmake-build-debug
--- OpenGL found: /usr/include
-/home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica/bin
--- CMake configuration completed successfully!
--- Configuring done (0.0s)
--- Generating done (0.0s)
--- Build files have been written to: /home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica/cmake-build-debug
