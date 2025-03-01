@@ -1,3 +1,0 @@
-/home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica/cmake-build-debug/CMakeFiles/computacao_grafica.dir
-/home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica/cmake-build-debug/CMakeFiles/rebuild_cache.dir

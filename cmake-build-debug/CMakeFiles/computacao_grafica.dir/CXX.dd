@@ -1,3 +1,0 @@
-ninja_dyndep_version = 1.0
-build CMakeFiles/computacao_grafica.dir/module1/main.cpp.o: dyndep
-
