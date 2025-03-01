@@ -1,0 +1,26 @@
+# ninja log v6
+2384	2478	1740850541951949068	app	ba4c851de1465c08
+359	2384	1740850539927178106	CMakeFiles/computacao_grafica.dir/module1/main.cpp.o	a4681f152d914d79
+354	359	1740850539921947249	CMakeFiles/computacao_grafica.dir/module1/main.cpp.o.modmap	7cc0b67305e29e6f
+2	403	1740849011775353385	CMakeFiles/computacao_grafica.dir/main.cpp.o.ddi	8f6d831c9718be8
+1191	1261	1740849201727880840	computacao_grafica	c203484d1d18c1f6
+6	325	1740848931706554643	CMakeFiles/computacao_grafica.dir/glad.c.o	b97dc61df265e5f3
+354	359	1740850539921947249	CMakeFiles/computacao_grafica.dir/CXX.dd	7cc0b67305e29e6f
+410	3272	1740849012184352361	CMakeFiles/computacao_grafica.dir/main.cpp.o	a62d6941923d5335
+4	354	1740850539571946933	CMakeFiles/computacao_grafica.dir/module1/main.cpp.o.ddi	ca571fadb14dff8c
+403	410	1740849012176352381	CMakeFiles/computacao_grafica.dir/main.cpp.o.modmap	36c9f037d68fa655
+0	19	1740851081325124053	build.ninja	b03776fb4c243981
+354	359	1740850539921947249	/home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica/cmake-build-debug/CMakeFiles/computacao_grafica.dir/CXXModules.json	7cc0b67305e29e6f
+0	22	1740851081325124053	build.ninja	b03776fb4c243981
+1	185	1740851081333049073	CMakeFiles/computacao_grafica.dir/module1/main.cpp.o.ddi	ca571fadb14dff8c
+185	188	1740851081517049015	CMakeFiles/computacao_grafica.dir/CXX.dd	7cc0b67305e29e6f
+185	188	1740851081517049015	/home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica/cmake-build-debug/CMakeFiles/computacao_grafica.dir/CXXModules.json	7cc0b67305e29e6f
+185	188	1740851081517049015	CMakeFiles/computacao_grafica.dir/module1/main.cpp.o.modmap	7cc0b67305e29e6f
+188	2820	1740851081520904308	CMakeFiles/computacao_grafica.dir/module1/main.cpp.o	a4681f152d914d79
+2820	2948	1740851084152048183	app	ba4c851de1465c08
+2	411	1740851099686043104	CMakeFiles/computacao_grafica.dir/module1/main.cpp.o.ddi	ca571fadb14dff8c
+411	416	1740851100095042967	CMakeFiles/computacao_grafica.dir/CXX.dd	7cc0b67305e29e6f
+411	416	1740851100095042967	/home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica/cmake-build-debug/CMakeFiles/computacao_grafica.dir/CXXModules.json	7cc0b67305e29e6f
+411	416	1740851100095042967	CMakeFiles/computacao_grafica.dir/module1/main.cpp.o.modmap	7cc0b67305e29e6f
+416	3631	1740851100100659086	CMakeFiles/computacao_grafica.dir/module1/main.cpp.o	a4681f152d914d79
+3631	3753	1740851103315041875	app	ba4c851de1465c08

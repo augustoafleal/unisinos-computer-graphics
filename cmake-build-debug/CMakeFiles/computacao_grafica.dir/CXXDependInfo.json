@@ -1,0 +1,21 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"dir-cur-bld" : "/home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica/cmake-build-debug",
+	"dir-cur-src" : "/home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica",
+	"dir-top-bld" : "/home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica/cmake-build-debug",
+	"dir-top-src" : "/home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : 
+	[
+		"/home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica/dependencies/include"
+	],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "/home/guto/Development/ciencia_da_computacao/semestre_8/computacao_grafica/cmake-build-debug/CMakeFiles/computacao_grafica.dir"
+}
