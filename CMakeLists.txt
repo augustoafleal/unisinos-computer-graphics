@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Origin files
-add_executable(${PROJECT_NAME} module1/main.cpp glad.c)
+add_executable(${PROJECT_NAME} module2/cubes.cpp glad.c)
 
 # Output file name
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "app")
@@ -46,5 +46,5 @@ endif()
 
 # Define output directory
 #set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
-message(${PROJECT_SOURCE_DIR}/bin)
+#message(${PROJECT_SOURCE_DIR}/bin)
 message(STATUS "CMake configuration completed successfully!")
