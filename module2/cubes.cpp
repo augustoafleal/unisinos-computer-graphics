@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
-#include <assert.h>
+#include <cassert>
 #include <vector>
+#include <fstream>
+
 // GLAD
 #include <GLAD/glad.h>
 
@@ -15,45 +17,17 @@
 
 using namespace std;
 
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
+void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 int setupShader();
 int setupGeometry();
+const GLchar* LoadShader(const char* file_name, int max_len);
 
 // Window dimension
-const GLuint WIDTH = 1000, HEIGHT = 1000;
+const GLuint WIDTH = 800, HEIGHT = 600;
 
-const GLchar* vertexShaderSource = R"(
-#version 450
-
-layout (location = 0) in vec3 position;
-layout (location = 1) in vec3 color;
-
-uniform mat4 model;
-uniform mat4 view;
-uniform mat4 projection;
-
-out vec3 finalColor;
-
-void main()
-{
-    gl_Position = model * vec4(position, 1.0);
-    finalColor = color;
-}
-)";
-
-// Código fonte do Fragment Shader (GLSL)
-const GLchar* fragmentShaderSource = R"(
-#version 450
-
-in vec3 finalColor;
-out vec4 color;
-
-void main()
-{
-    color = vec4(finalColor, 1.0);
-}
-)";
-
+const GLchar*  vertexShaderSource = LoadShader("../module2/shaders/vertex_shader.glsl", 1024 * 256);
+const GLchar*  fragmentShaderSource = LoadShader("../module2/shaders/fragment_shader.glsl", 1024 * 256);
 
 bool rotateX = false, rotateY = false, rotateZ = false;
 glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -65,17 +39,21 @@ std::vector<glm::vec3> positions = {
     glm::vec3(0.0f, 0.0f, 0.0f),
     glm::vec3(0.6f, 0.0f, 0.0f)
 };
-
+#include <filesystem>
 
 int main()
 {
+
     glfwInit();
 
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Cubes", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Cubes - Augusto Leal", nullptr, nullptr);
     glfwMakeContextCurrent(window);
 
     // Callback function
-    glfwSetKeyCallback(window, key_callback);
+    glfwSetKeyCallback(window, keyCallback);
+
+    // Callback Window Resize
+    glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 
     // Glad
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -160,7 +138,7 @@ int main()
     return 0;
 }
 
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
     float speed = 2.5f * deltaTime;
 
@@ -392,4 +370,47 @@ int setupGeometry()
     glBindVertexArray(0);
 
     return VAO;
+}
+
+const GLchar* LoadShader(const char* file_name, int max_len) {
+    char* shader_str = new char[max_len];
+    shader_str[0] = '\0';
+
+    FILE* file = fopen(file_name, "r");
+    if (!file) {
+        std::cerr << "ERROR: opening file for reading: " << file_name << std::endl;
+        delete[] shader_str;
+        return nullptr;
+    }
+
+    int current_len = 0;
+    char line[2048];
+
+    while (fgets(line, sizeof(line), file)) {
+        int line_len = strlen(line);
+        current_len += line_len;
+
+        if (current_len >= max_len) {
+            std::cerr << "ERROR: shader length is longer than string buffer length "
+                      << max_len << std::endl;
+            fclose(file);
+            delete[] shader_str;
+            return nullptr;
+        }
+
+        strcat(shader_str, line);
+    }
+
+    // Close the file
+    if (fclose(file) != 0) {
+        std::cerr << "ERROR: closing file from reading: " << file_name << std::endl;
+        delete[] shader_str;
+        return nullptr;
+    }
+
+    return shader_str;
+}
+
+void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
+    glViewport(0, 0, width, height);
 }
