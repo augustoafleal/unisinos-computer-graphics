@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Origin files
-add_executable(${PROJECT_NAME} module3/objects_texture.cpp glad.c stb_image.cpp)
+add_executable(${PROJECT_NAME} module4/objects_lighting.cpp glad.c stb_image.cpp)
 
 # Output file name
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "app")
