@@ -46,19 +46,16 @@ vector<glm::vec3> positions = {
     glm::vec3(0.6f, 0.0f, 0.0f)
 };
 string mtlFilePath = "";
-glm::vec3 ambientColor(0.0f), diffuseColor(0.0f), specularColor(0.0f);
+glm::vec3 ambientColor(0.0f), diffuseColor(0.0f), specularColor(0.0f), emissiveColor(0.0f);
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 2.0f);
 float shininess = 32.0f;
 
 int main()
 {
-    // glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    // glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-    // glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     glfwInit();
 
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Suzanne - Augusto Leal", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Lighting - Augusto Leal", nullptr, nullptr);
     glfwMakeContextCurrent(window);
 
     // Callback function
@@ -84,8 +81,7 @@ int main()
     glViewport(0, 0, width, height);
 
     Shader shader("../module4/shaders/vertex_shader.glsl", "../module4/shaders/fragment_shader.glsl");
-    //Geometry geom = setupGeometry("../module4/models/cat/cat_triangle.obj");
-    Geometry geom = setupGeometry("../module4/models/cat/cat_triangle.obj");
+    Geometry geom = setupGeometry("../module4/models/suzanne_painted/suzanne_painted.obj");
 
     glUseProgram(shader.ID);
 
@@ -95,21 +91,17 @@ int main()
     shader.setVec3("ka", ambientColor.r, ambientColor.g, ambientColor.b);
     shader.setVec3("kd", diffuseColor.r, diffuseColor.g, diffuseColor.b);
     shader.setVec3("ks", specularColor.r, specularColor.g, specularColor.b);
+    shader.setVec3("ke", emissiveColor.r, emissiveColor.g, emissiveColor.b);
     shader.setFloat("q", shininess);
 
     // // Pass light properties
     shader.setVec3("lightPos", 0.0f, 2.0f, 0.0f);
     shader.setVec3("lightColor", 1.3f, 1.3f, 1.3f);
 
-    // Create view and projection matrices
     glm::mat4 view = glm::lookAt(cameraPos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
-
-    // Pass them to shader
     shader.setMat4("view", glm::value_ptr(view));
     shader.setMat4("projection", glm::value_ptr(projection));
-    // Pass view/camera position
 
     model = glm::rotate(model, /*(GLfloat)glfwGetTime()*/ glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
     glUniformMatrix4fv(modelLoc, 1, 0, glm::value_ptr(model));
@@ -154,19 +146,17 @@ int main()
         }
 
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
         glActiveTexture(GL_TEXTURE0);
+
         if (geom.textureID > 0)
         {
             glBindTexture(GL_TEXTURE_2D, geom.textureID);
         }
+
         glBindVertexArray(geom.VAO);
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
         glDrawArrays(GL_TRIANGLES, 0, geom.vertexCount);
-
         glBindVertexArray(0);
-
         glBindTexture(GL_TEXTURE_2D, 0);
 
         glfwSwapBuffers(window);
@@ -500,7 +490,10 @@ string loadMTL(const string& path)
         {
             iss >> shininess;
         }
-
+        else if (keyword == "Ke")
+        {
+            iss >> emissiveColor.r >> emissiveColor.g >> emissiveColor.b;
+        }
     }
     mtlFile.close();
 

@@ -1,27 +1,22 @@
 #version 460 core
 
-in vec4 vertexColor;        // From vertex shader
-in vec3 fragNormal;         // From vertex shader
-in vec3 fragPos;            // From vertex shader
-in vec2 texCoord;           // From vertex shader
+in vec4 vertexColor;
+in vec3 fragNormal;
+in vec3 fragPos;
+in vec2 texCoord;
 
-// Material properties
 uniform vec3 ka;
 uniform float kd;
 uniform vec3 ks;
 uniform float q;
 
-// Light properties
 uniform vec3 lightPos;
 uniform vec3 lightColor;
 
-// Camera position
 uniform vec3 cameraPos;
 
-// Texture sampler
 uniform sampler2D colorBuffer;
 
-// Output
 out vec4 color;
 
 void main()
@@ -44,7 +39,7 @@ void main()
     // Texture color
     vec3 texColor = texture(colorBuffer, texCoord).rgb;
 
-    // Combine
+    // Equation
     vec3 result = (ambient + diffuse) * texColor + specular;
     color = vec4(result, 1.0f);
 }
