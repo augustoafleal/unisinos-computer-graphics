@@ -1,7 +1,6 @@
 # Execution Result
 
-Here is the output after running the program and testing with two different objects: a cat and Suzanne.
-
+Here is the output after running the program and testing with two different objects: a cat and Suzanne. This implementation also includes lighting using the Phong reflection model, allowing ambient, diffuse, and specular effects to be visualized.
 ### Animation
 
 #### Cat
