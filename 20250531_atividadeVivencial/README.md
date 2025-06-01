@@ -51,7 +51,9 @@ You can move the selected Suzanne model freely along the X, Y, and Z axes using 
 ## Animation
 
 - Multiple lights
+
 ![Execution Multiple Lights](img/suzanne_multiple_lights.gif)
 
 - Key light moving
+
 ![Execution Light Movement](img/suzanne_light_movement.gif)
