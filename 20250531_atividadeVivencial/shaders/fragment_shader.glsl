@@ -1,48 +1,50 @@
-#version 460 core
+#version 400
 
-in vec4 vertexColor;
-in vec3 fragNormal;
-in vec3 fragPos;
-in vec2 texCoord;
+in vec3 scaledNormal;
+in vec2 texcoord;
+in vec3 fragpos;
 
 uniform vec3 ka;
-uniform float kd;
+uniform vec3 kd;
 uniform vec3 ks;
 uniform float q;
-
-//uniform vec3 lightPos;
-//uniform vec3 lightColor;
-
-uniform vec3 lightPos[3];
 uniform vec3 lightColor[3];
-
+uniform vec3 lightPos[3];
 uniform vec3 cameraPos;
-
-uniform sampler2D colorBuffer;
 
 out vec4 color;
 
 void main()
 {
-    // Ambient
-    vec3 ambient = lightColor * ka;
+    vec3 N = normalize(scaledNormal);
+    vec3 V = normalize(cameraPos - fragpos);
 
-    // Diffuse
-    vec3 N = normalize(fragNormal);
-    vec3 L = normalize(lightPos - fragPos);
-    float diff = max(dot(N, L), 0.0);
-    vec3 diffuse = diff * lightColor * kd;
+    vec3 ambientTotal = vec3(0.0);
+    vec3 diffuseTotal = vec3(0.0);
+    vec3 specularTotal = vec3(0.0);
 
-    // Specular
-    vec3 R = reflect(-L, N);
-    vec3 V = normalize(cameraPos - fragPos);
-    float spec = pow(max(dot(R, V), 0.0), q);
-    vec3 specular = spec * ks * lightColor;
+    float k_c = 1.0;
+    float k_l = 0.09;
+    float k_q = 0.032;
 
-    // Texture color
-    vec3 texColor = texture(colorBuffer, texCoord).rgb;
+    for (int i = 0; i < 3; ++i)
+    {
+        vec3 L = normalize(lightPos[i] - fragpos);
+        vec3 R = reflect(-L, N);
 
-    // Equation
-    vec3 result = (ambient + diffuse) * texColor + specular;
-    color = vec4(result, 1.0f);
+        float distance = length(lightPos[i] - fragpos);
+        float attenuation = 1.0 / (k_c + k_l * distance + k_q * distance * distance);
+
+        ambientTotal += ka * lightColor[i];
+
+        float diff = max(dot(N, L), 0.0);
+        diffuseTotal += kd * diff * lightColor[i] * attenuation;
+
+        float spec = pow(max(dot(R, V), 0.0), q);
+        specularTotal += ks * spec * lightColor[i] * attenuation;
+    }
+
+    vec3 result = (ambientTotal + diffuseTotal)  + specularTotal;
+
+    color = vec4(result, 1.0);
 }

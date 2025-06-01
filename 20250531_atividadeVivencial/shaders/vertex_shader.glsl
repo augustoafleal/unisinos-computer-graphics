@@ -1,27 +1,21 @@
-#version 460 core
+#version 400
 
 layout (location = 0) in vec3 position;
-layout (location = 1) in vec3 color;
-layout (location = 2) in vec2 tex_coord;
-layout (location = 3) in vec3 normal;
-
-out vec4 vertexColor;
-out vec2 texCoord;
-out vec3 fragPos;
-out vec3 fragNormal;
+layout (location = 1) in vec2 tcoord;
+layout (location = 2) in vec3 normal;
 
 uniform mat4 model;
-uniform mat4 view;
 uniform mat4 projection;
+uniform mat4 view;
+
+out vec3 scaledNormal;
+out vec2 texcoord;
+out vec3 fragpos;
 
 void main()
 {
-    vec4 worldPos = model * vec4(position, 1.0);
-    gl_Position = projection * view * worldPos;
-
-    vertexColor = vec4(color, 1.0);
-    texCoord = vec2(tex_coord.x, 1.0 - tex_coord.y);
-
-    fragPos = vec3(worldPos);
-    fragNormal = mat3(transpose(inverse(model))) * normal;
+	gl_Position = projection * view * model * vec4(position, 1.0);
+	scaledNormal = normal;
+	texcoord = tcoord;
+	fragpos = vec3(model * vec4(position, 1.0));
 }
