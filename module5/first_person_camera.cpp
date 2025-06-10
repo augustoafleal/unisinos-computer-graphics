@@ -223,8 +223,8 @@ int main()
     glm::mat4 model = glm::mat4(1);
     GLint modelLoc = glGetUniformLocation(shader.ID, "model");
 
-    shader.setVec3("lightPos", 0.0f, 2.0f, 0.0f);
-    shader.setVec3("lightColor", 1.3f, 1.3f, 1.3f);
+    shader.setVec3("lightPos", 4.0f, 0.0f, 0.0f);
+    shader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
 
     glm::mat4 view = camera.GetViewMatrix();
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
@@ -477,10 +477,15 @@ Geometry setupGeometry(const char* filepath)
 
     loadObject(filepath, vert, uvs, normals);
 
-    vertices.reserve(vert.size() * 8); // 3 for position + 3 for color + 2 for UV
+    vertices.reserve(vert.size() * 8);
     for (size_t i = 0; i < vert.size(); ++i)
     {
-        vertices.insert(vertices.end(), {vert[i].x, vert[i].y, vert[i].z, 1.0f, 0.0f, 0.0f, uvs[i].x, uvs[i].y});
+        vertices.insert(vertices.end(),
+                        {
+                            vert[i].x, vert[i].y, vert[i].z,
+                            uvs[i].x, uvs[i].y,
+                            normals[i].x, normals[i].y, normals[i].z
+                        });
     }
 
     GLuint VBO, VAO;
@@ -498,10 +503,10 @@ Geometry setupGeometry(const char* filepath)
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);
 
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
     glEnableVertexAttribArray(1);
 
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(5 * sizeof(GLfloat)));
     glEnableVertexAttribArray(2);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);

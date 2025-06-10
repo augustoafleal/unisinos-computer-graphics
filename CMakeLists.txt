@@ -7,8 +7,9 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Origin files
-add_executable(${PROJECT_NAME} 20250531_atividadeVivencial/main.cpp glad.c stb_image.cpp)
-
+file(GLOB CPP_CURVES_SOURCES ${PROJECT_SOURCE_DIR}/dependencies/include/ParametricCurves/*.cpp)
+#message(STATUS "Arquivos encontrados: ${CPP_CURVES_SOURCES}")
+add_executable(${PROJECT_NAME} module6/parametric_curves.cpp glad.c stb_image.cpp ${CPP_CURVES_SOURCES})
 # Output file name
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "app")
 
