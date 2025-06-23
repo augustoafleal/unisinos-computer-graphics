@@ -154,7 +154,6 @@ vector<glm::vec3> generateControlPointsSet();
 std::vector<glm::vec3> generateUnisinosPointsSet();
 GLuint generateControlPointsBuffer(vector<glm::vec3> controlPoints);
 std::vector<glm::vec3> generateCircleControlPointsSet(int nPoints, float radius = 0.5f, string orientation = "");
-std::vector<glm::vec3> generateAsteroidControlPoints();
 bool checkSphereAABB(glm::vec3 sphereCenter, float radius, glm::vec3 boxMin, glm::vec3 boxMax);
 bool changeToGameplayScene = false;
 json jsonReader(string jsonpath);
@@ -224,8 +223,6 @@ int bezierNbCurvePoints = 0;
 int bezierPointOnCurveIterReference = 0;
 int hermiteNbCurvePoints = 0;
 int hermitePointOnCurveIterReference = 0;
-int bezierAsteroidsNbCurvePoints = 0;
-int bezierAsteroidsPointOnCurveIterReference = 0;
 vector<glm::vec3> pointsOnCurveVector;
 
 // ------------------------
@@ -1453,28 +1450,6 @@ GLuint generateControlPointsBuffer(vector<glm::vec3> controlPoints)
     glBindVertexArray(0);
 
     return VAO;
-}
-
-std::vector<glm::vec3> generateAsteroidControlPoints()
-{
-    std::vector<glm::vec3> pts;
-    glm::vec3 start(-50, 20, -8);
-    glm::vec3 end(50, -20, -4);
-    int numPoints = 100;
-
-    for (int i = 1; i <= numPoints; ++i)
-    {
-        float t = (float)i / (numPoints + 1);
-
-        glm::vec3 point = (1 - t) * start + t * end;
-
-        point.y += sin(t * 3.14f) * 2.0f;
-        point.z += cos(t * 3.14f) * 1.0f;
-
-        pts.push_back(point);
-    }
-
-    return pts;
 }
 
 bool checkSphereAABB(glm::vec3 sphereCenter, float radius, glm::vec3 boxMin, glm::vec3 boxMax)
