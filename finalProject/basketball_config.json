@@ -1,0 +1,64 @@
+{
+  "windowName": "Basketball - Augusto Leal",
+  "basePath": "../finalProject/",
+  "vertexShaderObject": "../finalProject/shaders/vertex_shader.glsl",
+  "fragmentShaderObject": "../finalProject/shaders/fragment_shader.glsl",
+  "basketBall": "../finalProject/models/ball/ball.obj",
+  "basketBallPosition": [
+    -2.0,
+    6.0,
+    4.6
+  ],
+  "basketBallScaleFactor": 0.3,
+  "orangeBall": "../finalProject/models/orange/orange.obj",
+  "orangeBallPosition": [
+    0.0,
+    6.0,
+    4.6
+  ],
+  "orangeBallScaleFactor": 0.09,
+  "pumpkinBall": "../finalProject/models/pumpkin/pumpkin.obj",
+  "pumpkinBallPosition": [
+    2.0,
+    6.0,
+    4.6
+  ],
+  "pumpkinBallScaleFactor": 0.007,
+  "basketHoop": "../finalProject/models/hoop/hoop.obj",
+  "basketHoopPosition": [
+    0.0,
+    0.0,
+    -9.0
+  ],
+  "basketHoopScaleFactor": 0.05,
+  "lightPos": [
+    4.0,
+    0.0,
+    0.0
+  ],
+  "lightColor": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "vertexShaderNumber": "../finalProject/shaders/vertex_number.glsl",
+  "fragmentShaderNumber": "../finalProject/shaders/fragment_number.glsl",
+  "numberObject": "../finalProject/models/number_",
+  "numberPosition": [
+    0.0,
+    0.0,
+    -50.0
+  ],
+  "numberScaleFactor": 3.0,
+  "numberRotation": [1.0, 0.0, 0.0],
+  "objectRotation": [1.0, 0.0, 0.0],
+  "vertexShaderBackground": "../finalProject/shaders/vertex_background.glsl",
+  "fragmentShaderBackground": "../finalProject/shaders/fragment_background.glsl",
+  "floorTexture": "../finalProject/textures/floor.jpg",
+  "vertexShaderBackgroundStars": "../finalProject/shaders/vertex_background_stars.glsl",
+  "fragmentShaderBackgroundStars": "../finalProject/shaders/fragment_background_stars.glsl",
+  "vertexShaderCurves": "../finalProject/shaders/vertex_curves.glsl",
+  "fragmentShaderCurves": "../finalProject/shaders/fragment_curves.glsl",
+  "starsTexture": "../finalProject/textures/stars.jpg",
+  "showParametricCurves": false
+}
